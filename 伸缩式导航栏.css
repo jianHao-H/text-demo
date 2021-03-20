@@ -1,0 +1,99 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    height: 100vh;
+    background:linear-gradient(skyblue, tomato);
+
+}
+
+body,
+.navbar,
+.navbar ul{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.navbar{
+    position: relative;
+    padding: 20px;
+    border-radius: 50px;
+    background-color: white;
+}
+
+.navbar input{
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.navbar span{
+    position:absolute;
+    left: 25px;
+    /* 现将两条线放一起 然后单独设置第二条线的位置 */
+    top:calc(50% - 10px);
+    width: 30px;
+    height: 4px;
+    border-radius: 15px;
+    background-color: #999;
+    /* 在这里解决一个问题 现在span覆盖着复选框，我们鼠标放到span点不中复选框 */
+    pointer-events: none;
+    /* 收回来的时候过渡在刚好相反 */
+    transition: transform 0.3s ease-in-out, top 0.3s ease-in-out;
+}
+
+.navbar span:nth-child(3){
+    top: calc(50% + 6px);
+}
+
+.navbar ul{
+    width: 0;
+    /* width设置为0， 所以下面设置溢出隐藏 */
+    overflow:hidden;
+    transition: all 0.5s;
+    /* 解决盒子扁的问题 这个问题的原因是文字被换行显示了，连个汉子竖着排列就把盒子撑大了*/
+    /* 这个属性可以让文字在一行显示，不换行 */
+    white-space: nowrap;
+}
+
+.navbar ul li{
+    list-style: none;
+    margin: 0 15px;
+
+}
+
+.navbar ul li a{
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 700;
+    color: black;
+}
+
+.navbar ul li a:hover{
+    color: #fb7299;
+}
+
+/* :checked是当选中的复选框的时候，~ 是兄弟选择器，查找同一级的ul */
+.navbar input:checked ~ ul {
+    width: 350px;
+}
+
+.navbar input:checked ~ span:nth-child(2) {
+    top: calc(50% - 2px);
+    transform: rotate(-45deg);
+    background-color: #fb7299;
+    /* 加个过渡调整速度 */
+    transition: top 0.3s ease-in-out, transform 0.3s ease-in-out 0.3s;
+}
+
+.navbar input:checked ~ span:nth-child(3) {
+    top: calc(50% - 2px);
+    transform: rotate(45deg);
+    background-color: #fb7299;
+    transition: top 0.3s ease-in-out, transform 0.3s ease-in-out 0.3s;
+}
