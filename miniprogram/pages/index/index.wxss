@@ -1,0 +1,7 @@
+view{
+  text-align: center;
+  color: skyblue;
+}
+text{
+  font-size: 20px; 
+}
